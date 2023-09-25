@@ -18,9 +18,7 @@ spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 #Make API Request
 artist_ID = '6qqNVTkY8uBg9cP3Jd7DAH'
-artist_top_tracks_request = spotify.artist_top_tracks(artist_ID)
-
-if artist_top_tracks_request:
+if artist_top_tracks_request := spotify.artist_top_tracks(artist_ID):
     tracks = artist_top_tracks_request["tracks"]
     tracks = [{i: (v/(1000*60))%60 if i == 'duration_ms' else v for i, v in track.items() if i in ['name', 'popularity', 'duration_ms']} for track in tracks]
 
